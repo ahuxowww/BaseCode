@@ -1,22 +1,35 @@
-import React, {useRef} from 'react';
+import React, {useRef, forwardRef} from 'react';
 
-export function withPreventDoubleTap<P>(
-  WrappedComponent: React.ComponentType<
-    P & {onPress?: (...args: any[]) => void}
-  >,
+type WithPress = {
+  onPress?: (...args: any[]) => void;
+};
+
+export default function withPreventDoubleTap<P extends object>(
+  WrappedComponent: React.ComponentType<P>,
 ) {
-  return (props: P & {onPress?: (...args: any[]) => void}) => {
-    const lastTap = useRef<number>(0);
+  const ComponentWithPreventDoubleTap = forwardRef<any, P & WithPress>(
+    (props, ref) => {
+      const lastTap = useRef<number>(0);
 
-    const handlePress = (...args: any[]) => {
-      const now = Date.now();
-      if (now - lastTap.current > 1000) {
-        // 500ms threshold
-        lastTap.current = now;
-        props.onPress?.(...args);
-      }
-    };
+      const handlePress = (...args: any[]) => {
+        const now = Date.now();
+        if (now - lastTap.current > 1000) {
+          lastTap.current = now;
+          props.onPress?.(...args);
+        }
+      };
 
-    return <WrappedComponent {...props} onPress={handlePress} />;
-  };
+      return (
+        <WrappedComponent {...(props as P)} ref={ref} onPress={handlePress} />
+      );
+    },
+  );
+
+  ComponentWithPreventDoubleTap.displayName = `withPreventDoubleTap(${
+    (WrappedComponent as any).displayName ||
+    (WrappedComponent as any).name ||
+    'Component'
+  })`;
+
+  return ComponentWithPreventDoubleTap;
 }

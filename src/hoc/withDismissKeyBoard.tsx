@@ -1,12 +1,23 @@
 import React from 'react';
-import {Keyboard, TouchableWithoutFeedback} from 'react-native';
+import {
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
-export function withDismissKeyboard<P>(
-  WrappedComponent: React.ComponentType<P>
-) {
+export default function withDismissKeyboard<
+  P extends React.JSX.IntrinsicAttributes,
+>(WrappedComponent: React.ComponentType<P>) {
   const ComponentWithDismissKeyboard = (props: P) => (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <WrappedComponent {...props} />
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+      accessible={false}>
+      <View style={styles.flex}>
+        <WrappedComponent {...props} />
+      </View>
     </TouchableWithoutFeedback>
   );
 
@@ -18,3 +29,9 @@ export function withDismissKeyboard<P>(
 
   return ComponentWithDismissKeyboard;
 }
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+});

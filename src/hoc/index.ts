@@ -1,2 +1,2 @@
-export * from './withDismissKeyBoard';
-export * from './withPreventDoubleTap';
+export {default as withDismissKeyBoard} from './withDismissKeyBoard';
+export {default as withPreventDoubleTap} from './withPreventDoubleTap';

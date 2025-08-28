@@ -6088,6 +6088,11 @@ react-native-gesture-handler@^2.28.0:
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
 
+react-native-infinite-pager@^0.3.18:
+  version "0.3.18"
+  resolved "https://registry.yarnpkg.com/react-native-infinite-pager/-/react-native-infinite-pager-0.3.18.tgz#c48dbd7d49a7196373ba7e7fefac3776c3738dd7"
+  integrity sha512-pt9r/s6FFZsqAX6GDTISvR/T5Qh/Jec94v685p1pMYXUQKgD4+lWiznx2lCRGf/hkCvy51CWLYLs6GdKFPotbw==
+
 react-native-is-edge-to-edge@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.2.1.tgz#64e10851abd9d176cbf2b40562f751622bde3358"

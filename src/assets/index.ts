@@ -1,1 +1,2 @@
-export * as Svgs from './svgs';
+import * as Svgs from './svgs';
+export {Svgs};
