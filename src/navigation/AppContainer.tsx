@@ -3,6 +3,7 @@ import HomeScreen from '../screens/home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomBarStack from './BottomBarStack';
 import {NavigationContainer} from '@react-navigation/native';
+import SurveyScreen from '@src/screens/survey';
 const Stack = createNativeStackNavigator();
 
 const AppContainer = () => {
@@ -12,6 +13,7 @@ const AppContainer = () => {
         <Stack.Screen name="MainTab" component={BottomBarStack} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Survey" component={SurveyScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
